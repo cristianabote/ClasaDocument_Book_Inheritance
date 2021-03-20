@@ -72,7 +72,7 @@ class Book extends Document{     //Mostenire prin keywordul extends
 public class Main {
 
     public static void main(String[] args) {
-	// se creaza clasa Document(clasa parinte) si clasa Book(clasa copil), unde se definesc constructori, getter si setter
+	// se creaza clasa Document(clasa parinte) si clasa Book(clasa copil) si clasa Email(clasa copil), unde se definesc constructori, getter si setter
     //si anumite metode. Apoi se face relatia de Inheritance (Mostenire), dupa care se apeleaza metode definite in clasa Document
         Book bookJava=new Book(3, "Oct 2020", "JAVA BOOK", 220);
         System.out.println(bookJava.getNrPages());
@@ -84,5 +84,43 @@ public class Main {
         bookJava.addAuthor("Andrei");
         bookJava.addAuthor("Ionut");
         bookJava.getAuthors();
+
+        Email email=new Email(2,"March 2020", "Testing products","cris@yahoo.com");
+        System.out.println(email.getDataDoc());
+        email.addAuthor("Cristiana");
+        email.getAuthors();
+        System.out.println("Old subject: "+email.getSubject());
+        email.setSubject("Final Products");
+        System.out.println("New subject: "+email.getSubject());
+        email.addAuthor("Bobby");
+        email.getAuthors();
     }
+}
+
+class Email extends Document{
+    String subject;
+    String destination;
+
+    public Email(){
+        this.subject=null;
+        this.destination=null;
+    }
+    public Email(int nrOfAuthors,String dataDoc, String subject, String destination){
+        super(nrOfAuthors,dataDoc);
+        this.subject=subject;
+        this.destination=destination;
+    }
+    public String getSubject(){
+        return this.subject;
+    }
+    public void setSubject(String subject){
+        this.subject=subject;
+    }
+    public String getDestination(){
+        return this.destination;
+    }
+    public void setDestination(String destination){
+        this.destination=destination;
+    }
+
 }
